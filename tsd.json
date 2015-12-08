@@ -9,7 +9,7 @@
       "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
     },
     "jquery/jquery.d.ts": {
-      "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
+      "commit": "c3ab375b371b7b4204adee3b1209baecd81cec02"
     },
     "angular-material/angular-material.d.ts": {
       "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
@@ -31,6 +31,12 @@
     },
     "moment/moment-node.d.ts": {
       "commit": "bb051830df88f5a55dcf06b7fe85bf6b62cc97f2"
+    },
+    "rx/rx.d.ts": {
+      "commit": "c3ab375b371b7b4204adee3b1209baecd81cec02"
+    },
+    "rx/rx-lite.d.ts": {
+      "commit": "c3ab375b371b7b4204adee3b1209baecd81cec02"
     }
   }
 }

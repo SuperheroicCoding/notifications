@@ -1,9 +1,9 @@
-import IToastPreset = angular.material.IToastPreset;
-import IToastService = angular.material.IToastService;
+import IThemingProvider = angular.material.IThemingProvider;
 /** @ngInject */
-export function config($logProvider:angular.ILogProvider, toastrConfig:ToastrOptions, $mdThemingProvider:ng.material.IThemingProvider) {
+export function config($logProvider:angular.ILogProvider, toastrConfig:ToastrOptions, $mdThemingProvider:IThemingProvider) {
   // enable log
   $logProvider.debugEnabled(true);
+
   // set options third-party lib
   toastrConfig.allowHtml = true;
   toastrConfig.closeButton = true;

@@ -1,5 +1,5 @@
 /** @ngInject */
-export function acmeNavbar(): angular.IDirective {
+export function createNavbarDirective(): angular.IDirective {
 
   return {
     restrict: 'E',

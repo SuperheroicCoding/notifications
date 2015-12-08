@@ -1,11 +1,14 @@
 {
   "name": "sokoNotifications",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "@reactivex/rxjs": "^5.0.0-alpha.12"
+  },
   "scripts": {
     "test": "gulp test"
   },
   "devDependencies": {
+    "@reactivex/rxjs": "^5.0.0-alpha.12",
     "awesome-typescript-loader": "^0.15.9",
     "browser-sync": "~2.9.11",
     "browser-sync-spa": "~1.0.3",

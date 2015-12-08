@@ -1,10 +1,9 @@
 <md-toolbar md-scroll-shrink md-shrink-speed-factor="0.3">
-  <acme-navbar creation-date="main.creationDate"></acme-navbar>
+  <soko-navbar creation-date="main.creationDate"></soko-navbar>
 </md-toolbar>
 <md-content layout="column" layout-fill layout-align="center center" style="height:90vh; width:90vw;" flex>
   <section flex="100">
     <h1 class="md-display-1">Test notifications</h1>
-
     <form layout="column" layout-fill>
       <md-input-container>
         <label>Title</label>
@@ -17,15 +16,13 @@
       <md-input-container>
         <label>Category</label>
         <md-select required ng-model="main.notification.category">
-          <md-option ng-repeat="category in main.categoryOptions" value="{{category.key}}">
-            {{category.name}}
-          </md-option>
+          <md-option ng-repeat="category in main.categoryOptions">{{category}}</md-option>
         </md-select>
-
       </md-input-container>
-      <md-button class="md-raised" ng-click="main.showNotification()">
+      <md-button type="submit" class="md-raised" ng-click="main.showNotification()">
         Add notification
       </md-button>
     </form>
   </section>
+  <soko-notification notification="main.lastNotification"></soko-notification>
 </md-content>

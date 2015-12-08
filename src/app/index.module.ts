@@ -1,13 +1,14 @@
-/// <reference path="../../.tmp/typings/tsd.d.ts" />
-
 import { config } from './index.config';
 import { routerConfig, RouterController } from './index.route';
 import { runBlock } from './index.run';
 import { MainController } from './main/main.controller';
-import { acmeNavbar } from '../app/components/navbar/navbar.directive';
-import {NotificationService} from "./components/notifications/notification.service";
+import { createNavbarDirective } from '../app/components/navbar/navbar.directive';
+import { createOverlayDirective} from '../app/components/overlay/overlay.directive';
+import { createNotificationDirective} from '../app/components/notifications/notification.directive';
+import {NotificationService} from './components/notifications/notification.service';
+import {NotificationController} from "./components/notifications/notification.controller";
 
-declare var moment: moment.MomentStatic;
+declare var moment:moment.MomentStatic;
 
 module sokoNotifications {
   'use strict';
@@ -19,6 +20,9 @@ module sokoNotifications {
     .run(runBlock)
     .controller('RouterController', RouterController)
     .controller('MainController', MainController)
-    .service('NotificationService',NotificationService)
-    .directive('acmeNavbar', acmeNavbar)
+    .service('NotificationService', NotificationService)
+    .directive('sokoNavbar', createNavbarDirective)
+    .directive('sokoOverlay', createOverlayDirective)
+    .controller('NotificationController', NotificationController)
+    .directive('sokoNotification', createNotificationDirective);
 }

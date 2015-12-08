@@ -1,41 +1,32 @@
-import {Notification, INotification} from "./notification";
-
-class NotificationWithCreationTime extends Notification {
-
-  public timestamp:number;
-
-  constructor(notification:INotification) {
-    super(notification.title, notification.text, notification.category);
-    this.timestamp = new Date().getTime();
-  }
+export interface INotification {
+  title: string;
+  text: string;
+  category: string;
 }
 
+export class Notification implements INotification {
+  constructor(public title:string, public text:string, public category:string) {
+  }
+}
+/**
+ * This class is responsible for storing notifications
+ */
 export class NotificationService {
 
-  public notifications:Notification[] = [];
+  public notifications:INotification[] = [];
+  private static DEFAULT_TIMEOUT = 15000;
+  private static MAX_NOTIFICATIONS = 5;
 
+  /** @ngInject */
   constructor(private $timeout:ng.ITimeoutService) {
-    (<any>Object).observe(this.notifications, (changes) => {
-      console.log(changes);
-    })
   }
 
   addNotification(notification:INotification) {
-    var notificationWithCreationTime = new NotificationWithCreationTime(notification);
-    this.notifications.push(notificationWithCreationTime);
+    this.notifications.push(notification);
+    this.$timeout(() => this.removeNotification(notification), NotificationService.DEFAULT_TIMEOUT);
   }
 
-  removeNotification(arg:number | Notification) {
-    var index;
-
-    if (typeof arg === 'number') {
-      index = arg;
-    }
-    if (arg instanceof Notification) {
-      index = this.notifications.indexOf(arg);
-    }
-    if (index > -1) {
-      this.notifications.splice(index);
-    }
+  removeNotification(notification : INotification) {
+    this.notifications = this.notifications.filter(elem => elem !== notification);
   }
 }

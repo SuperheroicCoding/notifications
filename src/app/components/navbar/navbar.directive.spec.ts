@@ -5,7 +5,7 @@ import { NavbarController } from './navbar.directive';
  * This example is not perfect.
  * Test should check if MomentJS have been called
  */
-describe('directive navbar', function() {
+describe('directive createNavbarDirective', function() {
   let element: angular.IAugmentedJQuery;
   let navbarController: NavbarController;
   let timeInMs: number;
