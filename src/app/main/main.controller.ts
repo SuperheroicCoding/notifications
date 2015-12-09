@@ -1,13 +1,15 @@
-import {INotification, Notification, NotificationService} from '../components/notifications/notification.service'
+import {INotification, Notification, NotificationService} from '../components/notifications/notification.service';
 
+/**
+ * the main controller to add an notification to the NotificationService
+ */
 export class MainController {
-  public creationDate:number;
-  public notification:INotification = new Notification(undefined, undefined, 'info');
-  public lastNotification:INotification;
-  public categoryOptions:string[] = ['info', 'warning', 'error'];
+  public creationDate: number;
+  public notification: INotification = new Notification(undefined, undefined, 'info');
+  public categoryOptions: string[] = ['info', 'warning', 'error'];
 
   /* @ngInject */
-  constructor(private toastr:Toastr, private NotificationService:NotificationService) {
+  constructor(private NotificationService: NotificationService) {
     this.activate();
   }
 
@@ -16,9 +18,9 @@ export class MainController {
   }
 
   showNotification() {
-    if (typeof this.notification.category !== 'undefined') {
-      this.lastNotification = this.notification;
-      this.NotificationService.addNotification(this.notification);
+    if (this.notification.category) {
+      var newNotification = new Notification(this.notification.text,this.notification.title,this.notification.category);
+      this.NotificationService.addNotification(newNotification);
     }
   }
 }

@@ -5,28 +5,38 @@ export interface INotification {
 }
 
 export class Notification implements INotification {
-  constructor(public title:string, public text:string, public category:string) {
+
+  constructor(public title: string, public text: string, public category: string) {
   }
 }
 /**
- * This class is responsible for storing notifications
+ * This class is responsible for storing notifications removiong them after a timeout
  */
 export class NotificationService {
-
-  public notifications:INotification[] = [];
-  private static DEFAULT_TIMEOUT = 15000;
+  public static DEFAULT_TIMEOUT = 15000;
   private static MAX_NOTIFICATIONS = 5;
+  public notifications: INotification[] = [];
 
   /** @ngInject */
-  constructor(private $timeout:ng.ITimeoutService) {
+  constructor(private $timeout: ng.ITimeoutService, private $rootScope: ng.IRootScopeService) {
   }
 
-  addNotification(notification:INotification) {
-    this.notifications.push(notification);
+
+  /**
+   * adds a notification to the notifications. Newest notification at first position
+   * starts a timer that removes the notification after DEFAULT_TIMEOUT
+   *
+   * @param notification to add
+   */
+  addNotification(notification: INotification) {
+    this.notifications = [notification].concat(this.notifications);
+    console.log('SERVICE', this.notifications);
     this.$timeout(() => this.removeNotification(notification), NotificationService.DEFAULT_TIMEOUT);
+    this.$rootScope.$broadcast('sokoNotificationChanged');
   }
 
-  removeNotification(notification : INotification) {
-    this.notifications = this.notifications.filter(elem => elem !== notification);
+  removeNotification(notification: INotification) {
+    this.notifications = this.notifications.filter((elem: INotification) => elem !== notification);
+    this.$rootScope.$broadcast('sokoNotificationChanged');
   }
 }

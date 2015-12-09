@@ -6,14 +6,16 @@ import { createNavbarDirective } from '../app/components/navbar/navbar.directive
 import { createOverlayDirective} from '../app/components/overlay/overlay.directive';
 import { createNotificationDirective} from '../app/components/notifications/notification.directive';
 import {NotificationService} from './components/notifications/notification.service';
-import {NotificationController} from "./components/notifications/notification.controller";
+import {NotificationController} from './components/notifications/notification.controller';
+import {NotificationCenterController} from './components/notifications/notificationCenter.controller';
+import {createNotificationCenterDirective} from './components/notifications/notificationCenter.directive';
 
-declare var moment:moment.MomentStatic;
+declare var moment: moment.MomentStatic;
 
 module sokoNotifications {
   'use strict';
 
-  angular.module('sokoNotifications', ['ngAnimate', 'ngNewRouter', 'ngMaterial', 'toastr'])
+  angular.module('sokoNotifications', ['ngAnimate', 'ngNewRouter', 'ngMaterial'])
     .constant('moment', moment)
     .config(config)
     .config(routerConfig)
@@ -24,5 +26,7 @@ module sokoNotifications {
     .directive('sokoNavbar', createNavbarDirective)
     .directive('sokoOverlay', createOverlayDirective)
     .controller('NotificationController', NotificationController)
-    .directive('sokoNotification', createNotificationDirective);
+    .directive('sokoNotification', createNotificationDirective)
+    .directive('sokoNotificationCenter', createNotificationCenterDirective)
+    .controller('NotificationCenterController', NotificationCenterController);
 }

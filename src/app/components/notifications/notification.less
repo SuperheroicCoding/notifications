@@ -1,44 +1,30 @@
 .notificationContainer {
-/*  padding-left: 10px;
-  padding-right: 5px;
-  height: 7vh;
-  max-width: 450px;
   min-width: 100px;
-  margin-bottom: 10px;
-  flex-flow: row;
-  align-items: center;
-  justify-content: flex-start;
+  max-width: 90vw;
   border-radius: 5px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-  text-overflow: ellipsis;*/
 
-  .title {
-    font-weight: bold;
-    font-size: 1em;
-    line-height: 1.1;
-  }
+  //overrid text transform from md-button
+  text-transform: none;
 
-  .text {
-    padding-left: 10px;
-    font-size: 0.87em;
-  }
-
-  .removeIcon {
-    align-self: flex-start;
-    min-width: 20px;
-  }
-
-  .info {
+  &.info {
     background-color: aquamarine;
   }
 
-  .warning {
+  &.warning {
     background-color: coral;
   }
 
-  .error {
-    background-color: #e67f7f;
+  &.error {
+    background-color: #ff007f;
+  }
+  .md-button.closeIcon {
+    right: -26px;
+    top: -16px;
+
+    md-icon {
+      width: 16px;
+      height: 16px;
+    }
   }
 }
 

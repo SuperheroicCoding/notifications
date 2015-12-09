@@ -1,8 +1,19 @@
-<div layout layout-fill layout-align="space-between center" class="notificationContainer"
-     ng-class="vm.notification.category">
-  <div flex="20" class="title">{{vm.notification.title}}</div>
-  <div flex="70" class="text">{{vm.notification.text}}</div>
-  <md-button class="md-icon-button" aria-label="More">
-    <md-icon md-svg-icon="/assets/icons/ic_close_black_16px.svg"></md-icon>
-  </md-button>
-</div>
+<md-button ng-click="notificationCtrl.removeNotification()" class="notificationContainer md-raised"
+           ng-class="{
+           'md-primary' : notificationCtrl.notification.category === 'info',
+           'md-accent' : notificationCtrl.notification.category === 'warning',
+           'md-warn' : notificationCtrl.notification.category === 'error'}">
+  <div
+    layout
+    layout-margin
+    layout-fill
+    layout-align="space-around center">
+    <div flex="grow" class="md-title">{{notificationCtrl.notification.title || notificationCtrl.notification.category}}</div>
+    <div flex="grow" class="md-caption">{{notificationCtrl.notification.text}}</div>
+    <div class="closeIcon">
+      <md-button class="md-icon-button md-accent closeIcon" aria-label="More">
+        <md-icon md-svg-icon="/assets/icons/ic_close_black_16px.svg"></md-icon>
+      </md-button>
+    </div>
+  </div>
+</md-button>

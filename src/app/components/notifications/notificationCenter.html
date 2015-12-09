@@ -1,0 +1,7 @@
+<div class="notificationCenter" ng-show="vm.notifications.length > 0" layout layout-align="end end">
+  {{vm.notifications}}
+  <div ng-for="note in vm.notifications track by $index">
+    {{note}}
+    <soko-notification notification="note"></soko-notification>
+  </div>
+</div>

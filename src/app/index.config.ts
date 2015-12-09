@@ -1,16 +1,7 @@
 import IThemingProvider = angular.material.IThemingProvider;
 /** @ngInject */
-export function config($logProvider:angular.ILogProvider, toastrConfig:ToastrOptions, $mdThemingProvider:IThemingProvider) {
+export function config($logProvider: angular.ILogProvider, $mdThemingProvider: IThemingProvider) {
   // enable log
   $logProvider.debugEnabled(true);
-
-  // set options third-party lib
-  toastrConfig.allowHtml = true;
-  toastrConfig.closeButton = true;
-  toastrConfig.timeOut = 90000;
-  toastrConfig.positionClass = 'toast-bottom-right';
-  toastrConfig.preventDuplicates = false;
-  toastrConfig.newestOnTop = true;
-  toastrConfig.progressBar = true;
-  $mdThemingProvider.theme('default').primaryPalette('pink').accentPalette('purple');
+  $mdThemingProvider.theme('default').primaryPalette('blue-grey').accentPalette('teal').warnPalette('red').backgroundPalette('grey').dark(true);
 }

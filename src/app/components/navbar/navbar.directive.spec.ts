@@ -17,7 +17,7 @@ describe('directive createNavbarDirective', function() {
     timeInMs = currentDate.setHours(currentDate.getHours() - 24);
 
     element = angular.element(`
-      <acme-navbar creation-date="${timeInMs}"></acme-navbar>
+      <soko-navbar creation-date="${timeInMs}"></soko-navbar>
     `);
 
     $compile(element)($rootScope.$new());

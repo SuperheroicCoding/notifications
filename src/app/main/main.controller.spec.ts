@@ -1,16 +1,16 @@
 import { MainController } from './main.controller';
+import {NotificationService} from '../components/notifications/notification.service';
 
 describe('controllers', () => {
-  let mainController:MainController;
-  let toastr:Toastr;
+  let mainController: MainController;
+  let notificationService: NotificationService;
 
   beforeEach(angular.mock.module('sokoNotifications'));
-  beforeEach(inject(($controller:ng.IControllerService, _toastr_:Toastr) => {
+  beforeEach(inject(($controller: ng.IControllerService, _NotificationService_: NotificationService) => {
     mainController = $controller<MainController>('MainController');
-    toastr = _toastr_;
-    spyOn(toastr, 'info').and.callThrough();
-    spyOn(toastr, 'warning').and.callThrough();
-    spyOn(toastr, 'error').and.callThrough();
+    notificationService = _NotificationService_;
+    spyOn(notificationService, 'addNotification');
+    spyOn(notificationService, 'removeNotification');
   }));
 
   it('should have a timestamp creation date', () => {
@@ -26,10 +26,15 @@ describe('controllers', () => {
     expect(mainController.categoryOptions.length).toBe(3);
   });
 
-  it('should call Toastr info if invoke showNotification() with notification category info', () => {
-    // catgoryOptions[0] === 'info'
-    mainController.notification.category = mainController.categoryOptions[0].key;
+  it('should call NotificationService addNotification if invoke showNotification()', () => {
+    mainController.notification.category = 'info';
     mainController.showNotification();
-    expect(toastr.info).toHaveBeenCalled();
+    expect(notificationService.addNotification).toHaveBeenCalled();
+  });
+
+  it('should not call NotificationService category is undefined', () => {
+    mainController.notification.category = '';
+    mainController.showNotification();
+    expect(notificationService.addNotification).not.toHaveBeenCalled();
   });
 });
